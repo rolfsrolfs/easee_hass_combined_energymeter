@@ -10,7 +10,7 @@ There are 2 different methods of installing the custom component
 
 1. Add this repository from HACS->Integrations.
 2. Restart Home Assistant.
-3. Install the component from Settings->Integrations. You may have to clear the browser cache to make the Easee integration appear in the list.
+3. Install the component from Settings->Integrations. You may have to clear the browser cache to make this integration appear in the list.
 
 ### Git installation
 
@@ -25,8 +25,10 @@ There are 2 different methods of installing the custom component
 
 Add the following to your configuration.yaml - make sure that the sensors you add are correct
 
+```
 sensor:
   - platform: easee_hass_combined_energy_meter
     total_consumption_entity: sensor.mineasee_home_levetidsforbruk
     session_consumption_entity: sensor.mineasee_home_energi_ladesesjon
+```
 
