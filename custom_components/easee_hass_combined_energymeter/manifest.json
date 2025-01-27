@@ -1,6 +1,6 @@
 {
   "domain": "easee_hass_combined_energymeter",
-  "name": "Combined Energy Meter",
+  "name": "Easee Hass Combined Energy Meter",
   "documentation": "https://github.com/rolfsrolfs/easee_hass_combined_energymeter",
   "dependencies": [],
   "codeowners": ["@rolfsrolfs"],
