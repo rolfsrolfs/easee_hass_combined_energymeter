@@ -1,0 +1,9 @@
+{
+  "name": "easee_hass_combined_energymeter",
+  "content_in_root": false,
+  "country": ["NO"],
+  "filename": "sensor.py",
+  "homeassistant": "2025.1.4",
+  "hacs": "2.0.3",
+  "render_readme": true
+}
