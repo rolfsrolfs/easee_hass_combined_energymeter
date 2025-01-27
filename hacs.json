@@ -3,6 +3,7 @@
   "content_in_root": false,
   "country": ["NO"],
   "config_flow": true,
+  "integration_type": "integration",
   "homeassistant": "2025.1.4",
   "hacs": "2.0.3",
   "render_readme": true

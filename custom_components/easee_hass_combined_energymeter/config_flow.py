@@ -1,9 +1,13 @@
+import logging #
 import voluptuous as vol
 from homeassistant import config_entries
+from homeassistant.config_entries import ConfigEntry #
 from homeassistant.core import callback
 from .const import DOMAIN
 
-class CombinedEnergyMeterConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
+_LOGGER = logging.getLogger(__name__)
+
+class EaseeHassCombinedEnergyMeterConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     VERSION = 1
 
     async def async_step_user(self, user_input=None):
@@ -27,9 +31,9 @@ class CombinedEnergyMeterConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     @staticmethod
     @callback
     def async_get_options_flow(config_entry):
-        return CombinedEnergyMeterOptionsFlow(config_entry)
+        return EaseeHassCombinedEnergyMeterOptionsFlow(config_entry)
 
-class CombinedEnergyMeterOptionsFlow(config_entries.OptionsFlow):
+class EaseeHassCombinedEnergyMeterOptionsFlow(config_entries.OptionsFlow):
     def __init__(self, config_entry):
         self.config_entry = config_entry
 

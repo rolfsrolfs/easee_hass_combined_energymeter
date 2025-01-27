@@ -7,14 +7,14 @@ from .const import DOMAIN
 #from homeassistant.helpers.entity import Entity
 
 async def async_setup_entry(hass, config_entry, async_add_entities):
-    """Set up the Combined Energy Meter sensor."""
+    """Set up the Easee Hass Combined Energy Meter sensor."""
     name = config_entry.data["name"]
     total_consumption_entity = config_entry.data["total_consumption_entity"]
     session_consumption_entity = config_entry.data["session_consumption_entity"]
 
-    async_add_entities([CombinedEnergyMeter(hass, name, total_consumption_entity, session_consumption_entity)], True)
+    async_add_entities([EaseeHassCombinedEnergyMeter(hass, name, total_consumption_entity, session_consumption_entity)], True)
 
-class CombinedEnergyMeter(Entity):
+class EaseeHassCombinedEnergyMeter(Entity):
     def __init__(self, hass, name, total_consumption_entity, session_consumption_entity):
         self.hass = hass
         self._name = name
