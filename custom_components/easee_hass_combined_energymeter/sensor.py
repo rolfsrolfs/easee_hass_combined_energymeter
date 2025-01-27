@@ -1,23 +1,24 @@
+import logging
+from datetime import timedelta
 from homeassistant.helpers.entity import Entity
+from homeassistant.helpers.event import async_track_state_change
 from homeassistant.const import ENERGY_KILO_WATT_HOUR
-from .const import DOMAIN
 
-#import logging
-#from datetime import timedelta
-#from homeassistant.helpers.entity import Entity
+_LOGGER = logging.getLogger(__name__)
 
-async def async_setup_entry(hass, config_entry, async_add_entities):
-    """Set up the Easee Hass Combined Energy Meter sensor."""
-    name = config_entry.data["name"]
-    total_consumption_entity = config_entry.data["total_consumption_entity"]
-    session_consumption_entity = config_entry.data["session_consumption_entity"]
-
-    async_add_entities([EaseeHassCombinedEnergyMeter(hass, name, total_consumption_entity, session_consumption_entity)], True)
+async def async_setup_platform(hass, config, async_add_entities, discovery_info=None):
+    total_consumption_entity = config.get("total_consumption_entity")
+    session_consumption_entity = config.get("session_consumption_entity")
+    
+    if not total_consumption_entity or not session_consumption_entity:
+        _LOGGER.error("Missing required configuration items")
+        return
+    
+    async_add_entities([EaseeHassCombinedEnergyMeter(hass, total_consumption_entity, session_consumption_entity)])
 
 class EaseeHassCombinedEnergyMeter(Entity):
-    def __init__(self, hass, name, total_consumption_entity, session_consumption_entity):
+    def __init__(self, hass, total_consumption_entity, session_consumption_entity):
         self.hass = hass
-        self._name = name
         self._total_consumption_entity = total_consumption_entity
         self._session_consumption_entity = session_consumption_entity
         self._state = None
@@ -27,7 +28,7 @@ class EaseeHassCombinedEnergyMeter(Entity):
 
     @property
     def name(self):
-        return self._name
+        return "Easee Hass Combined Energy Meter"
 
     @property
     def state(self):
